@@ -25,14 +25,19 @@ public class SmartTileMapCaveGenerator : MonoBehaviour
     //we want to have the player transform so we can randomaly place the player
     [SerializeField] Transform playerTransform = null;
     [SerializeField] int minReachableTiles = 100;
+    [SerializeField] int maxIterations = 1000;
 
-    private CaveGeneratorGraph caveGenerator;
-    //private TilemapGraph tilemapGraph;
+    [SerializeField] AllowedTiles allowedTiles = null;
+
+    private CaveGenerator caveGenerator;
+    private TilemapGraph tilemapGraph;
+
 
     void Start()
     {
+        tilemapGraph = new TilemapGraph(tilemap, allowedTiles.Get());
         Random.InitState(100);
-        caveGenerator = new CaveGeneratorGraph(randomFillPercent, gridSize);
+        caveGenerator = new CaveGenerator(randomFillPercent, gridSize);
 
         FindAndSetValidStartingPoint();
     }
@@ -69,13 +74,43 @@ public class SmartTileMapCaveGenerator : MonoBehaviour
 
     /**
     *A function to check there are at least minReachableTiles reachable from a giving position on the map.
-    *the function calls the BFS algorithm and check if the list of tiles is at least minReachableTiles
+    *the function uses the BFS algorithm to check if the path include at least minReachableTiles
     **/
     private bool IsStartingPointValid(Vector3Int startingPoint)
     {
-        List<Vector3Int> reachableTiles = new List<Vector3Int>();
-        BFS.FindPath(caveGenerator, startingPoint, startingPoint, reachableTiles);
-        return reachableTiles.Count >= minReachableTiles;
+        Queue<Vector3Int> openQueue = new Queue<Vector3Int>();
+        HashSet<Vector3Int> openSet = new HashSet<Vector3Int>();
+        Dictionary<Vector3Int, Vector3Int> previous = new Dictionary<Vector3Int, Vector3Int>();
+        openQueue.Enqueue(startingPoint);
+        openSet.Add(startingPoint);
+        int countReachableTiles = 0;
+        for(int i = 0; i < maxIterations; ++i) { // After maxiterations, stop and return an empty path
+            if (openQueue.Count == 0) 
+            {
+                break;
+            }
+            if(countReachableTiles >= minReachableTiles)
+            {
+                return true;
+            } 
+            else 
+            {
+                Vector3Int searchFocus = openQueue.Dequeue();
+                countReachableTiles++; //if we still didnt reach the minReachableTiles and we have nore nodes to go threw we keep on couning
+                foreach (var neighbor in tilemapGraph.Neighbors(searchFocus)) 
+                {
+                    //in this condition we want to skip the neighbors we already encouner and the ones we can't reach
+                    if (openSet.Contains(neighbor) || !allowedTiles.Contains(tilemap.GetTile(neighbor))) 
+                    {
+                        continue;
+                    }
+                    openQueue.Enqueue(neighbor);
+                    openSet.Add(neighbor);
+                    previous[neighbor] = searchFocus;
+                }
+            }
+        }
+        return false;
     }
 
     //A function to generate a random position to the player

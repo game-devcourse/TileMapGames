@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: 931517250}
   - component: {fileID: 931517249}
   - component: {fileID: 931517251}
+  - component: {fileID: 931517252}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -765,6 +766,27 @@ MonoBehaviour:
   gridSize: 100
   simulationSteps: 20
   pauseTime: 0.01
+--- !u!114 &931517252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931517247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ea92f5ef221324c87c1d68c5d8b1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 931517250}
+  wallTile: {fileID: 11400000, guid: 546c35550ead79941af5f505fdd175ec, type: 2}
+  floorTile: {fileID: 11400000, guid: 149fb7c95775bc842bc8f54055585274, type: 2}
+  randomFillPercent: 0.5
+  gridSize: 100
+  pauseTime: 0.01
+  playerTransform: {fileID: 130779377}
+  minReachableTiles: 100
+  allowedTiles: {fileID: 1972678413}
 --- !u!850595691 &1186101575
 LightingSettings:
   m_ObjectHideFlags: 0
