@@ -18,7 +18,7 @@ Adding 3 more states-
 3. [Being Lazy](https://github.com/game-devcourse/TileMapGames/blob/main/Assets/Scripts/3-enemies/BeingLazy.cs)- A guard falling asleep and becoming lazy, leading to a few seconds of neglectful inattention.
 
    
-<u>Game #2: Cave Generator in Tile Map.</u>
+<ins>Game #2: Cave Generator in Tile Map.</ins>
 
 In this game, the map will automatically generate, allowing you to explore at least 100 tiles. Once the map stabilizes, you can navigate through the world using the keyboard. Use the left arrow to move left, the right arrow to move right, the up arrow to move up, and the down arrow to move down.
 
