@@ -1,7 +1,7 @@
 # TileMapGames
 In this project, we have two games that involve a Tile Map.
 
-<ins>Game #1: State Machine in Tile Map.</ins>
+# <ins>Game #1: State Machine in Tile Map.</ins>
 
 In this game, you need to escape the guards. But pay attention, the guard will change his state. Be careful not to get caught, and may the odds be ever in your favor.
 
@@ -20,7 +20,7 @@ Adding 3 more states-
 
 
    
-<ins>Game #2: Cave Generator in Tile Map.</ins>
+# <ins>Game #2: Cave Generator in Tile Map.</ins>
 
 In this game, the map will automatically generate, allowing you to explore at least 100 tiles. Once the map stabilizes, you can navigate through the world using the keyboard. Use the left arrow to move left, the right arrow to move right, the up arrow to move up, and the down arrow to move down.
 
