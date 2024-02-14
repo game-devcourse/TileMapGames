@@ -1,7 +1,7 @@
 # TileMapGames
 In this project, we have two games that involve a Tile Map.
 
-<u>Game #1: State Machine in Tile Map.</u>
+<ins>Game #1: State Machine in Tile Map.</ins>
 
 In this game, you need to escape the guards. But pay attention, the guard will change his state. Be careful not to get caught, and may the odds be ever in your favor.
 
